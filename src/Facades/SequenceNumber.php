@@ -2,6 +2,7 @@
 
 namespace DeJoDev\LaravelSequenceNumberGenerator\Facades;
 
+use DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
@@ -11,6 +12,6 @@ class SequenceNumber extends Facade
 {
     protected static function getFacadeAccessor(): string
     {
-        return \DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberManager::class;
+        return SequenceNumberManager::class;
     }
 }

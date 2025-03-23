@@ -7,14 +7,6 @@
 
 This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
 
-## Support us
-
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/laravel-sequence-number-generator.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/laravel-sequence-number-generator)
-
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
-
 ## Installation
 
 You can install the package via composer:
@@ -41,16 +33,19 @@ This is the contents of the published config file:
 ```php
 return [
     'default' => env('SEQUENCE_NUMBER_GENERATOR_DEFAULT', 'custom'),
+    
     'custom' => [
         'sequence_type' => env('SEQUENCE_NUMBER_GENERATOR_TYPE', 'custom'),
         'mask' => env('SEQUENCE_NUMBER_GENERATOR_MASK', '{#}'),
         'is_yearly' => env('SEQUENCE_NUMBER_GENERATOR_IS_YEARLY', false),
     ],
+    
     'simple' => [
         'sequence_type' => 'simple',
         'mask' => '{#}',
         'is_yearly' => false,
     ],
+    
     'yearly' => [
         'sequence_type' => 'yearly',
         'mask' => '{y}-{######}',

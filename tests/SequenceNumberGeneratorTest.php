@@ -32,11 +32,33 @@ it('generates new number', function () {
 });
 
 it('Works through facade', function () {
-    $generator = SequenceNumberGeneratorFacade::setType('INV')
+    $generator = SequenceNumberGeneratorFacade::generator()
+        ->setType('INV')
         ->setMask('{T}-{Y}-{######}')
         ->setYearly(true);
 
     expect($generator)->toBeInstanceOf(SequenceNumberGenerator::class);
     $number = $generator->generateNewNumber();
     expect($number)->toBe('INV-2025-000001');
+});
+
+it('Works through facade with make', function () {
+    $generator = SequenceNumberGeneratorFacade::make(
+        'INV',
+        '{T}-{Y}-{######}',
+        true
+    );
+
+    expect($generator)->toBeInstanceOf(SequenceNumberGenerator::class);
+    $number = $generator->generateNewNumber();
+    expect($number)->toBe('INV-2025-000001');
+});
+
+it('Works through facade with default generator', function () {
+    $number = SequenceNumberGeneratorFacade::generateNewNumber();
+    expect($number)->toBe('1');
+    $number = SequenceNumberGeneratorFacade::generateNewNumber();
+    expect($number)->toBe('2');
+    $number = SequenceNumberGeneratorFacade::generateNewNumber();
+    expect($number)->toBe('3');
 });
