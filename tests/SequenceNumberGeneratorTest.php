@@ -21,13 +21,13 @@ it('generates new number', function () {
         ->setMask('{T}-{Y}-{######}')
         ->setYearly(true);
 
-    $number = $generator->generateNewNumber();
+    $number = $generator->generate();
     expect($number)->toBe('INV-2025-000001');
 
-    $number = $generator->generateNewNumber();
+    $number = $generator->generate();
     expect($number)->toBe('INV-2025-000002');
 
-    $number = $generator->generateNewNumber();
+    $number = $generator->generate();
     expect($number)->toBe('INV-2025-000003');
 });
 
@@ -55,10 +55,10 @@ it('Works through facade with make', function () {
 });
 
 it('Works through facade with default generator', function () {
-    $number = SequenceNumberGeneratorFacade::generateNewNumber();
+    $number = SequenceNumberGeneratorFacade::generate();
     expect($number)->toBe('1');
-    $number = SequenceNumberGeneratorFacade::generateNewNumber();
+    $number = SequenceNumberGeneratorFacade::generate();
     expect($number)->toBe('2');
-    $number = SequenceNumberGeneratorFacade::generateNewNumber();
+    $number = SequenceNumberGeneratorFacade::generate();
     expect($number)->toBe('3');
 });
