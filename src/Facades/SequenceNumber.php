@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Facade;
 
 /**
  * @see \DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberGenerator
+ * @see \DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberManager
  */
 class SequenceNumber extends Facade
 {

@@ -63,10 +63,6 @@ class SequenceNumberManager
      */
     public function createGenerator(string $name): SequenceNumberGenerator
     {
-        if (isset($this->generators[$name])) {
-            return $this->generators[$name];
-        }
-
         $settings = $this->config->get("sequence-number-generator.$name");
 
         if (is_null($settings)) {

@@ -98,24 +98,23 @@ class SequenceNumberGenerator
      * This method creates a new sequence number in the database if it doesn't exist.
      * If $recreate is true, it will recreate the sequence number. Otherwise, it will fail if the sequence number already exists.
      *
-     * @param  int  $sequenceNumber  The initial sequence number to set.
+     * @param  int  $number  The initial sequence number to set.
      * @param  bool  $recreate  Whether to recreate the sequence number.
      */
-    public function initialize(int $sequenceNumber = 0, bool $recreate = false): void
+    public function initialize(int $number = 0, bool $recreate = false): void
     {
         if ($recreate) {
             $sequenceNumber = SequenceNumber::where('type', $this->getType())->first();
         }
 
-        if (! $sequenceNumber) {
+        if (! isset($sequenceNumber)) {
             $sequenceNumber = new SequenceNumber;
         }
 
         $sequenceNumber->fill([
-            'type',
-            $this->getType(),
+            'type' => $this->getType(),
             'year' => Date::now()->year,
-            'last_number' => $sequenceNumber,
+            'last_number' => $number,
         ]);
         $sequenceNumber->save();
     }
@@ -158,10 +157,10 @@ class SequenceNumberGenerator
     }
 
     /**
-     * Returns the last generated sequence number in this session.
+     * Returns the last generated sequence number for this generator instance.
      * This method does not increment the sequence number.
      */
-    public function lastReturned(): ?string
+    public function last(): ?string
     {
         return $this->last;
     }
