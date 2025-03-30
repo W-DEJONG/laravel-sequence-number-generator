@@ -27,30 +27,30 @@ $sequenceNumber = SequenceNumber::generate();
 echo $sequenceNumber; // e.g: INV-2025-000001 
 
 // Generate a sequence number with a specific configuration
-$sequenceNumber = SequenceNumber::generate('custom');
+$sequenceNumber = SequenceNumber::generator('custom')->generate();
 echo $sequenceNumber; // e.g: MY-TYPE-25-000001P
 ```
 
 > **Warning** This package uses database locking to ensure that each generated number is unique so you must use a database that
-supports lockForUpdate() like mysql, mariadb or postgresql.
+supports lockForUpdate() like MySQL, MariaDB or PostgreSQL.
 
 ## Installation
 
-You can install the package via composer:
+You can install the package via Composer:
 ```bash
 composer require dejodev/laravel-sequence-number-generator
 ```
 
-Then publish and run the migrations with:
+Then publish the resources and run the migrations with:
 ```bash
-php artisan vendor:publish --tag="laravel-sequence-number-generator-migrations"
+php artisan vendor:publish --provider DeJoDev\\LaravelSequenceNumberGenerator\\LaravelSequenceNumberGeneratorServiceProvider
 php artisan migrate
 ```
 
 Set the environment variables in your `.env` file:
 
 ```dotenv
-SEQUENCE_NUMBER_GENERATOR_DEFAULT=custom
+SEQUENCE_NUMBER_GENERATOR_DEFAULT=default
 SEQUENCE_NUMBER_GENERATOR_TYPE=default
 SEQUENCE_NUMBER_GENERATOR_MASK={#}
 SEQUENCE_NUMBER_GENERATOR_IS_YEARLY=false
@@ -58,40 +58,11 @@ SEQUENCE_NUMBER_GENERATOR_IS_YEARLY=false
 
 ### Environment Variables
 
-- `SEQUENCE_NUMBER_GENERATOR_DEFAULT`: The default sequence configuration to use. default is `custom`.
-- `SEQUENCE_NUMBER_GENERATOR_TYPE`: A string value that distinguishes between different sequence generators. default is `default`.
-- `SEQUENCE_NUMBER_GENERATOR_MASK`: The mask format string for the sequence number. default is `{#}`.
-- `SEQUENCE_NUMBER_GENERATOR_IS_YEARLY`: Boolean to determine if the sequence should reset yearly. default is `false`.
-
-For advanced configuration you can publish the config file with:
-```bash
-php artisan vendor:publish --tag="laravel-sequence-number-generator-config"
-```
-
-This is the contents of the published config file:
-
-```php
-return [
-    'default_generator' => env('SEQUENCE_NUMBER_GENERATOR_DEFAULT', 'default'),
-    'default' => [
-        'sequence_type' => env('SEQUENCE_NUMBER_GENERATOR_TYPE', 'default'),
-        'mask' => env('SEQUENCE_NUMBER_GENERATOR_MASK', '{#}'),
-        'is_yearly' => env('SEQUENCE_NUMBER_GENERATOR_IS_YEARLY', false),
-    ],
-    
-    'simple' => [
-        'sequence_type' => 'simple',
-        'mask' => '{#}',
-        'is_yearly' => false,
-    ],
-    
-    'yearly' => [
-        'sequence_type' => 'yearly',
-        'mask' => '{y}-{######}',
-        'is_yearly' => true,
-    ],
-];
-```
+- `SEQUENCE_NUMBER_GENERATOR_DEFAULT`: The default sequence configuration to use. Default is `default`.
+- `SEQUENCE_NUMBER_GENERATOR_TYPE`: The type for the default generator. 
+   Type is a string value that distinguishes between different sequence generators. Default is `default`.
+- `SEQUENCE_NUMBER_GENERATOR_MASK`: The mask format string for the default generator. Default is `{#}`.
+- `SEQUENCE_NUMBER_GENERATOR_IS_YEARLY`: Boolean to determine if the default generator should reset yearly. Default is `false`.
 
 Using the config file, you can define multiple sequence configurations for your application.
 ```php
@@ -127,15 +98,14 @@ Then use them like this:
 ```php
 use DeJoDev\LaravelSequenceNumberGenerator\Facades\SequenceNumber;
 
-$customerNumber = SequenceNumber::generate('customers');
+$customerNumber = SequenceNumber::generator('customers')->generate();
 echo $customerNumber; // e.g: 000001
 
-$orderNumber = SequenceNumber::generate('orders');
+$orderNumber = SequenceNumber::generator('orders')->generate();
 echo $orderNumber; // e.g: ORD-25000001
 
-$invoiceNumber = SequenceNumber::generate('invoices');
+$invoiceNumber = SequenceNumber::generator('invoices')->generate();
 echo $invoiceNumber; // e.g: INV-2025-000001
 ```
 
 The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
-
