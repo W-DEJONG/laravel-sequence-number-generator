@@ -50,7 +50,7 @@ class SequenceNumberManager
      */
     public function getDefaultGenerator(): ?string
     {
-        return config('sequence-number-generator.default');
+        return config('sequence-number-generator.default_generator');
     }
 
     /**

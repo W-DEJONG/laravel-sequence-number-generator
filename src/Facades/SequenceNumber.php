@@ -6,8 +6,10 @@ use DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
+ * Laravel sequence number generator facade.
+ *
  * @see \DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberGenerator
- * @see \DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberManager
+ * @see SequenceNumberManager
  */
 class SequenceNumber extends Facade
 {

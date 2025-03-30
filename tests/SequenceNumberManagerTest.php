@@ -34,12 +34,12 @@ it('Works through facade with named generator', function () {
 
 it('Throws exception when no default generator is found', function () {
     Date::setTestNow('2025-01-01 00:00:00');
-    Config::set('sequence-number-generator.default');
+    Config::set('sequence-number-generator.default_generator');
     SequenceNumber::generator()->generate();
 })->throws(InvalidArgumentException::class);
 
 it('Throws exception when generator not found', function () {
     Date::setTestNow('2025-01-01 00:00:00');
-    Config::set('sequence-number-generator.default');
+    Config::set('sequence-number-generator.default_generator');
     SequenceNumber::generator('non-existing')->generate();
 })->throws(InvalidArgumentException::class);
