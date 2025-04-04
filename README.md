@@ -122,7 +122,7 @@ $invoiceNumber = SequenceNumber::generator('invoices')->generate();
 echo $invoiceNumber; // e.g: INV-2025-000001
 ```
 ## Advanced Usage
-you can also use the `SequenceNumber` class directly to generate sequence numbers without using the facade.
-Check out the `SequenceNumberGenerator` class for more advanced usage and customization options.
+you can also use the `SequenceNumberGenerator` class directly to generate sequence numbers without using the facade.
+Check out `SequenceNumberGenerator.php` for more advanced usage and customization options.
 
 (c) The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
