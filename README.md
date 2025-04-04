@@ -2,7 +2,6 @@
 This package allows you to generate complex sequence numbers in Laravel applications. 
 It uses database locking to ensure that each generated number is unique, even in high-concurrency environments. 
 You can configure different sequence types, masks, and yearly resets to suit your application's needs.
-
 ![Preview](img/preview.png)
 
 ## Features
@@ -41,9 +40,9 @@ You can install the package via Composer:
 composer require dejodev/laravel-sequence-number-generator
 ```
 
-Then publish the resources and run the migrations with:
+Then publish run the migrations with:
 ```bash
-php artisan vendor:publish --provider DeJoDev\\LaravelSequenceNumberGenerator\\LaravelSequenceNumberGeneratorServiceProvider
+php artisan vendor:publish --tag="sequence-number-generator-migrations"
 php artisan migrate
 ```
 
@@ -63,6 +62,21 @@ SEQUENCE_NUMBER_GENERATOR_IS_YEARLY=false
    Type is a string value that distinguishes between different sequence generators. Default is `default`.
 - `SEQUENCE_NUMBER_GENERATOR_MASK`: The mask format string for the default generator. Default is `{#}`.
 - `SEQUENCE_NUMBER_GENERATOR_IS_YEARLY`: Boolean to determine if the default generator should reset yearly. Default is `false`.
+
+### Mask Variables
+
+The mask format string can contain the following variables:
+
+- `{####}`: The sequential number with leading zeros. The number of `#` characters determines the length of the padding.
+- `{Y}`: The full year (e.g., 2025).
+- `{y}`: The last two digits of the year (e.g., 25).
+- `{T}`: The sequence type.
+- `{t}`: First letter of the sequence type.
+
+You can also publish the config file with:
+```bash
+php artisan vendor:publish --tag="sequence-number-generator-config"
+```
 
 Using the config file, you can define multiple sequence configurations for your application.
 ```php
