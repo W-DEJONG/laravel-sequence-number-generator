@@ -33,7 +33,7 @@ echo $sequenceNumber; // e.g: MY-TYPE-25-000001P
 > **Warning** This package uses database locking to ensure that each generated number is unique so you must use a database that
 supports lockForUpdate() like MySQL, MariaDB or PostgreSQL.
 
-## Installation
+## Installation and usage
 
 You can install the package via Composer:
 ```bash
@@ -121,5 +121,8 @@ echo $orderNumber; // e.g: ORD-25000001
 $invoiceNumber = SequenceNumber::generator('invoices')->generate();
 echo $invoiceNumber; // e.g: INV-2025-000001
 ```
+## Advanced Usage
+you can also use the `SequenceNumber` class directly to generate sequence numbers without using the facade.
+Check out the `SequenceNumberGenerator` class for more advanced usage and customization options.
 
-The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
+(c) The MIT License (MIT). Please see [License File](LICENSE.md) for more information.
