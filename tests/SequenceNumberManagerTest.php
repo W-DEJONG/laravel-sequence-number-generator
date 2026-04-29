@@ -2,9 +2,11 @@
 
 use DeJoDev\LaravelSequenceNumberGenerator\Facades\SequenceNumber;
 use DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberGenerator;
+use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\Date;
 
 it('Works through facade', function () {
+    Date::setTestNow('2025-01-01 00:00:00');
     $generator = SequenceNumber::generator()
         ->setType('INV')
         ->setMask('{T}-{Y}-{######}')
