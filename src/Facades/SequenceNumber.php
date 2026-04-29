@@ -2,13 +2,14 @@
 
 namespace DeJoDev\LaravelSequenceNumberGenerator\Facades;
 
+use DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberGenerator;
 use DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberManager;
 use Illuminate\Support\Facades\Facade;
 
 /**
  * Laravel sequence number generator facade.
  *
- * @see \DeJoDev\LaravelSequenceNumberGenerator\SequenceNumberGenerator
+ * @see SequenceNumberGenerator
  * @see SequenceNumberManager
  */
 class SequenceNumber extends Facade

@@ -59,7 +59,7 @@ class SequenceNumberManager
      * @param  string  $name  Name of the generator
      * @return SequenceNumberGenerator The generator instance
      *
-     * @throws \InvalidArgumentException
+     * @throws InvalidArgumentException
      */
     public function createGenerator(string $name): SequenceNumberGenerator
     {
